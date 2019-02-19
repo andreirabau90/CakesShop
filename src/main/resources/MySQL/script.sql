@@ -10,6 +10,7 @@ CREATE table product(
 product_id int primary key not null AUTO_INCREMENT,
 product_name varchar(30) not null,
 price int,
+description varchar (1000),
 product_group int,
 foreign key (product_group) references  group_product(group_id));
 
@@ -33,16 +34,16 @@ insert into group_product(group_id, group_name) values
 (3,"sweets");
 
 
-insert into product(product_id,product_name,price,product_group) values
-(1,"наполеон",7,1),
-(2,"медовый",5,1),
-(3,"фруктовый",4,1),
-(4,"кремовый",5,1),
-(5,"имбирный",2,2),
-(6,"с курагой",3,2),
-(7,"шоколадный",3,2),
-(8,"с цукатами",3,2),
-(9,"сорванец",5,3),
-(10,"красная шапочка",6,3),
-(11,"коровка",5,3);
+insert into product(product_id,product_name,price,description,product_group) values
+(1,"наполеон",7,null,1),
+(2,"медовый",5,null,1),
+(3,"фруктовый",4,null,1),
+(4,"кремовый",5,null,1),
+(5,"имбирный",2,null,2),
+(6,"с курагой",3,null,2),
+(7,"шоколадный",3,null,2),
+(8,"с цукатами",3,null,2),
+(9,"сорванец",5,null,3),
+(10,"красная шапочка",6,null,3),
+(11,"коровка",5,null,3);
 

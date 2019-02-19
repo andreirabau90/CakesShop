@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,7 +17,7 @@ public class ControllerProduct {
     @Autowired
     private ProductDAO productDAOImpl;
     @Autowired
-    private GroupProductDAO groupProductDAO;
+    private GroupProductDAO groupProductDAOImpl;
 
     @RequestMapping("/getProduct")
     public void add(@RequestParam("id") Long id) {
@@ -32,10 +31,10 @@ public class ControllerProduct {
                              @RequestParam("name") String name,
                              @RequestParam("price") int price,
                              @RequestParam("groupProductId") Long groupProductId) {
-        GroupProduct groupProduct = groupProductDAO.getId(groupProductId);
-      if(groupProduct.getId() == null){
-          return;
-      }
+        GroupProduct groupProduct = groupProductDAOImpl.getId(groupProductId);
+        if (groupProduct.getId() == null) {
+            return;
+        }
         Product product = productDAOImpl.getId(id) == null ? new Product() : productDAOImpl.getId(id);
         product.setProductName(name);
         product.setPrice(price);
@@ -57,29 +56,27 @@ public class ControllerProduct {
         modelAndView.addObject("product", list);
         return modelAndView;
     }
-    @RequestMapping("/getGroupProducts")
-    public ModelAndView getProductId(@RequestParam("myList") List listGroups){
-        ModelAndView modelAndView= new ModelAndView();
+
+    @RequestMapping("/getDescription")
+    public ModelAndView getDescription(@RequestParam("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        Product product = productDAOImpl.getId(id);
+        String description = product.getDescription();
         modelAndView.setViewName("myCakesShop");
-        List listProducts= new ArrayList();
-//       List<Product> list=productDAOImpl.getAll("Product");
-
-//        for (Product p: list
-//             ) {
-//            if (p.getGroupProduct().getId()==){
-//                list1.add(p);
-//            }
-//        }
-        listProducts.addAll(productDAOImpl.getAll("Product"));
-
-        modelAndView.addObject("listGr",listGroups);
-        modelAndView.addObject("listPr",listProducts);
+        modelAndView.addObject("description", description);
         return modelAndView;
 
 
     }
 
-
+    @RequestMapping("/setDescription")
+    public void setDescription(@RequestParam("description") String description,
+                               @RequestParam("id") Long id) {
+        Product product = productDAOImpl.getId(id);
+        product.setDescription(description);
+        productDAOImpl.saveOrUpdate(product);
+        System.out.println(product.getDescription());
+    }
 
 
 }

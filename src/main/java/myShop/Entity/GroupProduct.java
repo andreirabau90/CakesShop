@@ -3,18 +3,17 @@ package myShop.Entity;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "group_product")
 public class GroupProduct {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_id")
     private Long id;
     @Column(name = "group_name")
     private String group;
-    @OneToMany(mappedBy = "groupProduct",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "groupProduct", fetch = FetchType.LAZY)
     private List<Product> productList;
 
     @Override

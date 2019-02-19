@@ -2,19 +2,27 @@ package myShop.Entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long id;
+    private Long userId;
+    //    @NotEmpty
+    @Size(min = 3, max = 20, message = "количество символов от 3 до 20")
     @Column(name = "user_name")
-    private String name;
+    private String userName;
+    //  @NotEmpty
     @Column(name = "user_pass")
+    @Size(min = 8, max = 25, message = "количество символов от 8 до 25")
     private String pass;
+    //   @NotEmpty
+    @Pattern(regexp = "[a-z0-9_-]", message = "введите правильный email")
     @Column(name = "user_email")
     private String email;
     @OneToMany(mappedBy = "feedbackUser")
@@ -32,27 +40,27 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
                 ", pass='" + pass + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPass() {

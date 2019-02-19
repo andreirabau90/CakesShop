@@ -1,10 +1,12 @@
 package myShop.Entity;
 
+import org.springframework.stereotype.Controller;
+
 import javax.persistence.*;
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
+@Controller
 @Entity
 @Table(name = "product")
 public class Product {
@@ -16,13 +18,24 @@ public class Product {
     private String productName;
     @Column(name = "price")
     private int price;
+    @Column(name = "description")
+    private String description;
+
+
+
     @ManyToOne
     @JoinColumn(name = "product_group")
     private GroupProduct groupProduct;
     @OneToMany(mappedBy = "feedbackProduct")
     private List<Feedback> productFeedback;
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public GroupProduct getGroupProduct() {
         return groupProduct;
     }

@@ -2,16 +2,20 @@
 //
 //import myShop.DAO.GenericDAO;
 //import myShop.Entity.GroupProduct;
+//import myShop.Entity.Product;
 //import org.hibernate.SessionFactory;
 //import org.springframework.beans.factory.annotation.Autowired;
 //
+//import javax.inject.Inject;
 //import java.util.List;
 //
 //public class GroupProductDAOImpl implements GenericDAO {
+//
 //    @Autowired
 //    SessionFactory sessionFactory;
+//
 //    @Override
-//    public Object getId( Long id) {
+//    public Object getUserId( Long id) {
 //        return sessionFactory.getCurrentSession().get(GroupProduct.class,id);
 //    }
 //

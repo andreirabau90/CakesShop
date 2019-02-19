@@ -18,11 +18,11 @@
 //    @Column(name = "price_product")
 //
 //    private int priceProduct;
-//    public long getId() {
+//    public long getUserId() {
 //        return id;
 //    }
 //
-//    public void setId(long id) {
+//    public void setUserId(long id) {
 //        this.id = id;
 //    }
 //

@@ -2,7 +2,6 @@ package myShop.controller;
 
 import myShop.DAO.entityDAO.groupProductDAO.GroupProductDAO;
 import myShop.Entity.GroupProduct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +45,17 @@ public class ControllerGroupProduct {
         return modelAndView;
 
     }
+
+    @RequestMapping("/getGroupProducts")
+    public ModelAndView getProductId(@RequestParam("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("myCakesShop");
+        GroupProduct groupProduct = groupProductDAOImpl.getId(id);
+        List list = groupProduct.getProductList();
+        modelAndView.addObject("listPr", list);
+        return modelAndView;
     }
+}
 
 
 

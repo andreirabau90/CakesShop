@@ -11,13 +11,6 @@
 <head>
     <title>Start</title>
 </head>
-<%--<body>--%>
-<%--<form action="/pages/groupProduct.jsp">--%>
-    <%--<input type="submit" value="checkGroupProduct">--%>
-<%--</form>--%>
-<%--<form action="/pages/product.jsp">--%>
-    <%--<input type="submit" value="checkProduct">--%>
-<%--</form>--%>
 <form action="/allGroupProduct" >
     <input type="submit" value="go in my shop">
 </form>
