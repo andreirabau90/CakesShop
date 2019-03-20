@@ -11,8 +11,5 @@
 <head>
     <title>Start</title>
 </head>
-<form action="/allGroupProduct" >
-    <input type="submit" value="go in my shop">
-</form>
 </body>
 </html>

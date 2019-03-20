@@ -19,6 +19,10 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>resources.labels</param-value>
+        <param-value>resources.messages</param-value>
+    </context-param>
 </web-app>
 
