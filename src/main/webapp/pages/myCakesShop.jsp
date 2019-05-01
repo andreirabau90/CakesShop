@@ -1,5 +1,3 @@
-<%@ taglib prefix="FORM" uri="http://www.springframework.org/tags/form" %>
-<%--<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>--%>
 <%--
   Created by IntelliJ IDEA.
   User: Андрей
@@ -8,10 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"  %>
 <html>
 <head>
     <title>CakesShop</title>
@@ -28,14 +26,19 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </head>
-<body>
+<p>
 <span style="float: right">
     <a href="?lang=en">en</a>
     |
     <a href="?lang=ru">ru</a>
 </span>
 
-<div>
+<c:if test="${user!=null}">
+<form action="/getBasket">
+<input type="hidden" name="user" value="${user.userId}">
+    <input type="submit" value="Basket">
+</form>
+    </c:if>
 
     <form action="/getGroupProducts">
         <input type="hidden" name="user" value="${user.userId}">

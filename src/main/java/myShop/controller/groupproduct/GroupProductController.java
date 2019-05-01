@@ -16,9 +16,6 @@ public class GroupProductController {
     private GenericDAO<GroupProduct> groupProductDAOImpl;
     String groupName = "GroupProduct";
 
-    public GroupProductController() {
-    }
-
     @RequestMapping("/getGroup")
     public void read(@RequestParam("id") long id) {
         GroupProduct groupProduct = groupProductDAOImpl.getId(GroupProduct.class, id);

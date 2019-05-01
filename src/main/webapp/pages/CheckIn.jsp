@@ -12,8 +12,8 @@
     <title>Check In</title>
 </head>
 <body>
-<form action="/enter">
-    <input type="text" name="name" value="andrey">
+<form action="/logIn">
+    <input type="text" name="name" value="chocolate">
     <input type="text" name="pass" value="11111111">
     <input type="submit" name="check in">
 </form>

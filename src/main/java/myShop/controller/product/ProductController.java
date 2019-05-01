@@ -1,9 +1,9 @@
 package myShop.controller.product;
 
 
+import myShop.dao.GenericDAO;
 import myShop.entity.GroupProduct;
 import myShop.entity.Product;
-import myShop.dao.GenericDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

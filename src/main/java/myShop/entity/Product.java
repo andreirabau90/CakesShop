@@ -23,23 +23,19 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "product_group")
     private GroupProduct groupProduct;
-    @ManyToMany
-    @JoinTable(
-            joinColumns = @JoinColumn(referencedColumnName = "product_id"),
-            inverseJoinColumns = @JoinColumn(referencedColumnName = "basket_id"))
-    private List<Basket> basketList;
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<BasketAndProduct> basketAndProductList;
 
+    public List<BasketAndProduct> getBasketAndProductList() {
+        return basketAndProductList;
+    }
+
+    public void setBasketAndProductList(List<BasketAndProduct> basketAndProductList) {
+        this.basketAndProductList = basketAndProductList;
+    }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public List<Basket> getBasket() {
-        return basketList;
-    }
-
-    public void setBasket(List<Basket> basket) {
-        this.basketList = basket;
     }
 
     public String getDescription() {
@@ -97,7 +93,3 @@ public class Product {
                 '}';
     }
 }
-//    @Column(name = "pictures")
-//    private String pictures;
-//    @Column(name = "descriptions")
-//    private String descriptions;

@@ -10,6 +10,7 @@
     <packaging>war</packaging>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <my.spring>5.1.4.RELEASE</my.spring>
         <my.hibernate>5.4.0.Final</my.hibernate>
     </properties>

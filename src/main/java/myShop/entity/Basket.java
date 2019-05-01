@@ -10,13 +10,18 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "basket_id")
     private Long id;
-    @OneToOne(mappedBy = "basket")
-    @JoinColumn(name = "user_id")
-    private User userId;
-    @ManyToMany(mappedBy = "basketList")
-    private List<Product> productList;
-    @Column(name = "quantity")
-    private double quantity;
+    @OneToOne(mappedBy = "basket", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private User user;
+    @OneToMany(mappedBy = "basket", fetch = FetchType.LAZY)
+    private List<BasketAndProduct> basketAndProductList;
+
+    public List<BasketAndProduct> getBasketAndProductList() {
+        return basketAndProductList;
+    }
+
+    public void setBasketAndProductList(List<BasketAndProduct> basketAndProductList) {
+        this.basketAndProductList = basketAndProductList;
+    }
 
     public Long getId() {
         return id;
@@ -26,33 +31,16 @@ public class Basket {
         this.id = id;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
-
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void setUser(User userId) {
+        this.user = userId;
     }
 
     public Basket() {
 
     }
-
 
 }

@@ -6,15 +6,9 @@ CREATE table group_product(
 group_id int not null primary key AUTO_INCREMENT ,
 group_name varchar(30) not null);
 
-CREATE table product(
-product_id int primary key not null AUTO_INCREMENT,
-product_name varchar(30) not null,
-price int,
-description varchar (250),
-product_group int,
-foreign key (product_group) references  group_product(group_id),
-product_basket int,
-foreign key (product_basket) references basket(basket_id));
+CREATE TABLE basket(
+basket_id int  not null primary key AUTO_INCREMENT
+);
 
 CREATE table user(
 user_id int not null primary key AUTO_INCREMENT,
@@ -24,6 +18,23 @@ user_email varchar (30) not null,
 user_basket int,
 FOREIGN KEY (user_basket) references basket(basket_id));
 
+CREATE table product(
+product_id int primary key not null AUTO_INCREMENT,
+product_name varchar(30) not null,
+price int,
+description varchar (250),
+product_group int,
+foreign key (product_group) references  group_product(group_id);
+
+CREATE TABLE basket_product(
+basketAndProduct_id int primary key not null AUTO_INCREMENT,
+quantity double not null,
+ref_basketID int,
+foreign key (ref_basketID) references basket(basket_id),
+ref_productID int,
+foreign key(ref_productID) references product(product_id)
+);
+
 CREATE table feedback (
 feedback_id int not null primary key AUTO_INCREMENT,
 text varchar (250) not null,
@@ -31,11 +42,6 @@ feedback_user int,
 foreign key (feedback_user) references user(user_id),
 feedback_product int,
 foreign key (feedback_product) references product(product_id));
-
-CREATE TABLE basket(
-basket_id int  not null primary key AUTO_INCREMENT,
-quantity double not null
-);
 
 insert into group_product(group_id, group_name) values
 (1,"cakes"),
@@ -51,4 +57,3 @@ insert into product(product_id,product_name,price,description,product_group) val
 (5,"marshmallow",3,"good biscuit",2),
 (6,"red hat",6,"good sweets",3),
 (7,"cow",5,"good sweets",3);
-

@@ -12,7 +12,7 @@
     <title>Registration</title>
 </head>
 <body>
-<form action="/enter">
+<form action="/registration">
     <input type="text" name="name">
     <input type="text" name="pass">
     <input type="text" name="email">

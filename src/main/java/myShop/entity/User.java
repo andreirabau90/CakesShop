@@ -4,6 +4,7 @@ package myShop.entity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -14,21 +15,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long userId;
-//    @NotEmpty
+    @NotEmpty
     @Size(min = 3, max = 20, message = "количество символов от 3 до 20")
     @Column(name = "user_name")
     private String userName;
-//    @NotEmpty
+        @NotEmpty
     @Column(name = "user_pass")
     @Size(min = 8, max = 25, message = "количество символов от 8 до 25")
     private String pass;
-//    @NotEmpty
-    //    @Pattern( message = "введите правильный email")
+    @NotEmpty
+    @Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", message = "введите правильный email.")
     @Column(name = "user_email")
     private String email;
     @OneToMany(mappedBy = "feedbackUser")
     private List<Feedback> userFeedback;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumn(name = "user_basket")
     private Basket basket;
 
     public Basket getBasket() {
@@ -45,17 +47,6 @@ public class User {
 
     public void setUserFeedback(List<Feedback> userFeedback) {
         this.userFeedback = userFeedback;
-    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", pass='" + pass + '\'' +
-                ", email='" + email + '\'' +
-                '}';
     }
 
     public Long getUserId() {
@@ -90,7 +81,23 @@ public class User {
         this.email = email;
     }
 
+    public User(String userName, String pass, String email, Basket basket) {
+        this.userName = userName;
+        this.pass = pass;
+        this.email = email;
+        this.basket = basket;
+    }
+
     public User() {
 
+    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", pass='" + pass + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
